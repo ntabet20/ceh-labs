@@ -1,0 +1,15 @@
+\section{Methodology}
+% One subsection per step: goal, command, why each flag, output, interpretation.
+\subsection{Step 1: Title}
+\textbf{Goal:} ...
+
+\begin{lstlisting}[language=bash]
+nmap -sS -sV -p- 192.168.56.20
+\end{lstlisting}
+\textbf{Flag rationale:} \cmd{-sS} SYN scan; \cmd{-sV} service versions; \cmd{-p-} all 65535 ports.
+
+% \begin{figure}[H]\centering
+%   \includegraphics[width=.9\textwidth]{nmap-scan.png}
+%   \caption{Open ports on the target}\label{fig:nmap}
+% \end{figure}
+% \terminal[caption={Raw nmap output}]{evidence/nmap.txt}

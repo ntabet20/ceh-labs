@@ -1,0 +1,70 @@
+% ===== Shared preamble for all CEH lab reports =====
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,float,caption,subcaption}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{listings,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fancyhdr,titlesec,enumitem,etoolbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\definecolor{accent}{HTML}{1F3A5F}
+\definecolor{sevCritical}{HTML}{8B0000}
+\definecolor{sevHigh}{HTML}{D9480F}
+\definecolor{sevMedium}{HTML}{E6A700}
+\definecolor{sevLow}{HTML}{2F9E44}
+\definecolor{sevInfo}{HTML}{1971C2}
+\definecolor{codebg}{HTML}{F6F8FA}
+
+\newcommand{\labmodule}{}
+\newcommand{\labtitle}{}
+\newcommand{\labauthor}{Your Name}
+\newcommand{\labdate}{\today}
+\newcommand{\labenv}{Kali Linux (attacker) / Metasploitable2 (target)}
+\newcommand{\labversion}{1.0}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{accent}{\labmodule}}
+\rhead{\small\labtitle}
+\cfoot{\small Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{accent}}{\thesubsection}{0.6em}{}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize, backgroundcolor=\color{codebg},
+  frame=single, rulecolor=\color{black!20}, breaklines=true,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  showstringspaces=false, columns=fullflexible, keepspaces=true, upquote=true
+}
+\newcommand{\cmd}[1]{\texttt{#1}}
+\newcommand{\terminal}[2][]{\lstinputlisting[#1]{#2}}
+
+% \begin{finding}{Title}{Critical|High|Medium|Low|Info}{Affected host/service}{CVSS}
+\newtcolorbox{finding}[4]{
+  enhanced, breakable, colback=white, colframe=sev#2, boxrule=0.8pt,
+  fonttitle=\bfseries, coltitle=white, colbacktitle=sev#2,
+  title={#1\hfill #2 (CVSS #4)},
+  before upper={\textbf{Affected:} #3\par\medskip}
+}
+
+\newcommand{\makecover}{%
+  \begin{titlepage}
+  \centering\vspace*{2cm}
+  {\Large\color{accent}Certified Ethical Hacker (CEH v13)\par}\vspace{0.5cm}
+  {\Huge\bfseries\labtitle\par}\vspace{0.4cm}
+  {\large\labmodule\par}\vspace{2cm}
+  \begin{tabular}{rl}
+    \textbf{Author:} & \labauthor\\
+    \textbf{Date:} & \labdate\\
+    \textbf{Environment:} & \labenv\\
+    \textbf{Version:} & \labversion\\
+  \end{tabular}
+  \vfill
+  \small\textit{All testing was performed in an isolated lab environment owned by the author or explicitly authorised for training use.}
+  \end{titlepage}}
